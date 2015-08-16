@@ -97,6 +97,100 @@ them all here. In the end, education is by far the most powerful of reasons.
 As you continue in your LFS experience, you will disover the power that
 information and knowledge truly bring.
    
+** LFS Target Architectures
+The primary target architectures of LFS are the AMD/Intel x86(32-bit) and
+x86_64(64-bit) CPUs. On the other hand, the instructions in this book are
+also known to work, with some modifications, with the Power PC and ARM CPUs.
+To build a system that utilizes on of these CPUs, the main prerequisite, in
+addition to those on the next few pages, is an existing Linux system such as
+an earlier LFS installation, Ubuntu, Read Hat/Fedora, SuSE, or other distri-
+bution that targets the architecture that you have. Also note that a 32-bit
+distribution can be installed and used as a host system on a 64-bit AMD/Intel
+computer.
+
+Some other facts about 64-bit systems need to be added here. When compared
+to a 32-bit system, the sizes of executable programs are slightly larger
+and the execution speeds are only slightly faster. For example, in a test
+build of LFS-6.5 on a Core2Duo CPU based system, the following statistics
+were measured:
+#+BEGIN_SRC info
+Architecture Build Time          Build Size
+32-bit       198.5 minutes        648MB
+64-bit       190.6 minutes        709MB
+#+END_SRC
+As you can see, the 64-bit build is only 4% faster and is 9% larger than the
+32-bit build. The gain from going to a 64-bit system is relatively minimal.
+Of course, if you have more than 4GB of RAM or want to manipulate data that
+exceeds 4GB, the advantages of a 64-bit system are substantial.
+
+The default 64-bit build that results from LFS is considered as "pure" 
+64-bit system. That is, it supports 64-bit executables only. Building a 
+"multi-lib" system requires compiling many applications twice, once for a 
+32-bit system and once for a 64-bit system. This is not directly supported
+in LFS because it would interfere with the educational objective of providing
+the instructions needed for a straightforward base Linux system. You can 
+refer to the /Cross Linux From Scratch project/ for this advanced topic.
+
+There is one last comment about 64-bit systems. There are some older packages
+that cannot currently be built in a "pure" 64-bit system or require speciali-
+zed build instructions. Generally, these packages have some embedded 32-bit
+specific assembly language instructions that fail when building on a 64-bit
+system. This includes some Xorg drivers for some legacy video cards at
+http://xorg.freedesktop.org/releases/individual/driver/
+Many of these problems can be worked around, but may require some specialized
+procedures or patches.
+** LFS and Standards
+The structure of LFS follows Linux standards as closely as possible. The
+primary standsards are:
++ POSIX.1-2008.
++ Filesystem Hierarchy Standard version 3.0 Draft 1 (FHS)
++ Linux Standard Base (LSB) Specifications
+  The LSB has five separate standards: Core, C++, Desktop, Runtime Languages,
+  and Printing. In addition to generic requirements there are also architec-
+  ture specific requirements. LFS attempts to conform to the architectures
+  discussed in the previous section.
+  
+  Note:
+  Many people do not agree with the requirements of the LSB. The main purpose
+  of defining it is to ensure that propritary software will be able to be
+  installed and run properly on a compliant system. Since LFS is source 
+  based, the user has complete control over what packages are desired and 
+  many choose not to install some packages that are specified by the LSB.
+
+Creating a complete LFS system capable of passing the LSB certifications 
+tests is possible, but not without many additional packages that are beyond
+the scope of LFS. These additional packages have installation instructions
+in BLFS.
+
+*** Packages supplied by LFS needed to satisfy the LSB Requirements
+LSB Core:                base, bc, binutils, coreutils, diffutils, file,
+                         findutils, gawk, grep, gzip, m4, manDB, ncurses,
+                         procps, psmisc, sed, shadown, tar, util-linux, zlib
+LSB C++:                 gcc
+LSB Desktop:             N/A
+LSB Runtime languages:   Perl
+LSB Printing:            N/A
+LSB Multimedia:          N/A
+
+*** Packages supplied by BLFS needed to satisfy the LSB Requirements
+LSB Core:                at, batch, cpio, ed, fcrontab, initd-tools,
+                         lsb_release, PAM, pax, sendmail, time
+LSB C++:                 N/A
+LSB Desktop:             atk, cairo, desktop-file-utils, freetype, fontconfig
+                         glib2, GTK+2, icon-naming-utils, libjpeg, libpng,
+                         libxml2, mesalib, pango, Qt4, xorg
+LSB Runtime Languages:   Python
+LSB Printing:            CUPS
+LSB Multimedia:          alsa libraries, NSPR, NSS, OpenSSL, Java, xdg-utils
+
+*** packages not supplied by LFS or BLFS needed to satisfy the LSB Requirements
+LSB Core:                N/A
+LSB C++:                 N/A
+LSB Desktop              Qt3
+LSB Runtime Languages:   N/A
+LSB Printing             N/A
+LSB Multimedia:          N/A
+
 * Part I. Introduction
 * Part II. Preparing for the build
 * Part III. Building the LFS system
