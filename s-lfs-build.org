@@ -1,0 +1,13 @@
+#+TITLE: S How To Build LFS 7.7 From The Very Beginning
+
+* preparation
+** books
++ LFS-BOOK-7.7.pdf
+** Softwares
++ ubuntu-14.04-desktop-i386.iso
++ virtualbox
+** LFS packages
+download from ftp://ftp.lfs-matrix.net/pub/lfs/
+
+* build steps
+** Read LFS7.7 from the very beginning.
